@@ -1,22 +1,14 @@
 @import "tailwindcss";
 
-@font-face {
-  font-family: 'TuesdayNight';
-  src: url('/fonts/TuesdayNight-Regular.woff') format('woff'),
-       url('/fonts/TuesdayNight-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
 @theme inline {
   --color-background: #ffffff;
   --color-foreground: #171717;
   --color-gold: #c9a96e;
   --color-gold-light: #d4b97a;
-  --font-sans: 'Nunito Sans', sans-serif;
-  --font-serif: 'Cormorant Garamond', serif;
-  --font-script: 'TuesdayNight', cursive;
-  --font-heading: 'Nunito Sans', sans-serif;
+  --font-sans: var(--font-nunito), "Nunito Sans", sans-serif;
+  --font-serif: var(--font-cormorant), "Cormorant Garamond", serif;
+  --font-script: var(--font-rouge), "Rouge Script", cursive;
+  --font-heading: var(--font-nunito), "Nunito Sans", sans-serif;
 }
 
 body {
@@ -25,7 +17,9 @@ body {
   font-family: var(--font-serif);
 }
 
-html, body {
+html,
+body {
   height: 100%;
   overflow: hidden;
 }
+

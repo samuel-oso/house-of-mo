@@ -11,13 +11,16 @@ export default function ServicesCarousel({ services }) {
   const tripled = [...services, ...services, ...services];
   const cardWidth = 33.333;
 
-  const scrollToPage = useCallback((page) => {
-    const track = trackRef.current;
-    if (!track) return;
-    const oneSetWidth = track.scrollWidth / 3;
-    const targetScroll = oneSetWidth + (page * oneSetWidth) / totalPages;
-    track.scrollTo({ left: targetScroll, behavior: "smooth" });
-  }, [totalPages]);
+  const scrollToPage = useCallback(
+    (page) => {
+      const track = trackRef.current;
+      if (!track) return;
+      const oneSetWidth = track.scrollWidth / 3;
+      const targetScroll = oneSetWidth + (page * oneSetWidth) / totalPages;
+      track.scrollTo({ left: targetScroll, behavior: "smooth" });
+    },
+    [totalPages],
+  );
 
   useEffect(() => {
     const track = trackRef.current;
@@ -64,8 +67,7 @@ export default function ServicesCarousel({ services }) {
 
       <div
         ref={trackRef}
-        className="flex gap-6 overflow-x-auto px-8 [scrollbar-width:none] cursor-grab active:cursor-grabbing snap-x snap-mandatory"
-        style={{ scrollBehavior: "smooth" }}
+        className="flex gap-6 overflow-x-auto px-8 [scrollbar-width:none] cursor-grab active:cursor-grabbing snap-x snap-mandatory scroll-smooth"
       >
         {tripled.map((service, i) => (
           <Link
@@ -78,14 +80,17 @@ export default function ServicesCarousel({ services }) {
               className="h-[400px] bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
               style={{ backgroundImage: `url('${service.image}')` }}
             />
-            <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/10 to-transparent" />
+            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-500" />
             <div className="absolute bottom-6 left-6 right-6">
               <p className="font-script text-white text-[20px] leading-[1em] mb-1">
-                .{service.label}
+                . {service.label}
               </p>
               <h3 className="font-sans text-white text-[14px] font-medium uppercase tracking-[2px]">
                 {service.title}
               </h3>
+            </div>
+            <div className="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+              <span className="text-white text-[20px]">→</span>
             </div>
           </Link>
         ))}

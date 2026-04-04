@@ -1,21 +1,48 @@
 import "./globals.css";
+import {
+  Cormorant_Garamond,
+  Nunito_Sans,
+  Rouge_Script,
+} from "next/font/google";
 import Sidebar from "@/components/Sidebar";
 
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-cormorant",
+  display: "swap",
+});
+
+const nunitoSans = Nunito_Sans({
+  subsets: ["latin"],
+  weight: ["300", "400", "600", "700"],
+  variable: "--font-nunito",
+  display: "swap",
+});
+
+const rougeScript = Rouge_Script({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-rouge",
+  display: "swap",
+});
+
 export const metadata = {
-  title: "PWE | Weddings & Events",
+  title: "House of Mo'Xperience | Weddings & Events",
   description: "Your Personal Dream Maker — Weddings & Events Planning",
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="h-full antialiased">
+    <html
+      lang="en"
+      className={`h-full antialiased ${cormorant.variable} ${nunitoSans.variable} ${rougeScript.variable}`}
+    >
       <head>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/themify-icons/0.1.2/css/themify-icons.css" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&family=Nunito+Sans:wght@300;400;600;700&display=swap"
           rel="stylesheet"
+          href="https://cdn.jsdelivr.net/themify-icons/0.1.2/css/themify-icons.css"
         />
       </head>
       <body className="h-full flex">
