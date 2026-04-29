@@ -2,8 +2,12 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import ServicesCarousel from "@/components/ServicesCarousel";
 import HeroSlideshow from "@/components/HeroSlideshow";
+import ContactForm from "@/components/ContactForm";
+import ScrollReveal from "@/components/ScrollReveal";
+import { StaggerContainer, StaggerItem } from "@/components/ScrollReveal";
 
 const services = [
   {
@@ -26,83 +30,128 @@ const services = [
   },
 ];
 
+const footerSocials = [
+  {
+    icon: "ti-facebook",
+    href: "https://www.facebook.com/profile.php?id=61575744886347",
+  },
+  { icon: "ti-instagram", href: "#" },
+  { icon: "ti-whatsapp", href: "https://wa.me/2348146684159" },
+];
+
 export default function Home() {
   return (
     <>
       {/* ===== HOME ===== */}
       <section id="home" className="relative h-screen w-full overflow-hidden">
         <HeroSlideshow />
-        <div className="absolute bottom-[15px] left-[30px] p-[30px] bg-white max-w-[50%]">
-          <p className="relative top-[2px] font-script mb-2 text-[32px] text-[#ADADAD] leading-[1em] text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 40, scale: 0.97 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.9, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+          className="absolute bottom-[15px] left-[15px] right-[15px] md:right-auto md:left-[30px] p-[30px] bg-white md:max-w-[50%] z-2"
+        >
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+            className="relative top-[2px] font-script mb-2 lg:text-[32px] text-[20px] text-[#ADADAD] leading-[1em] text-center"
+          >
             House of MoXperience
-          </p>
-          <h2 className="relative font-sans text-[24px] leading-[1em] text-black font-medium m-[0_0_20px_0] uppercase tracking-[1px]">
+          </motion.p>
+          <motion.h2
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1.0 }}
+            className="relative font-sans lg:text-[22px] text-base leading-[1.5em] text-black font-medium mb-2 uppercase tracking-[1px]"
+          >
             Where Dreams Become Experiences
-          </h2>
-          <p className="font-serif text-[17px] font-medium leading-[1.5em] text-[#666] m-[0_0_20px]">
-            It’s never just an event, it’s a feeling, a memory, a moment
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 1.2 }}
+            className="font-serif lg:text-[17px] text-sm font-medium leading-[1.5em] text-[#666] m-[0_0_20px]"
+          >
+            It&apos;s never just an event, it&apos;s a feeling, a memory, a moment
             carefully curated.
-          </p>
-          <a
+          </motion.p>
+          <motion.a
             href="#contact"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 1.4 }}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
             className="inline-block font-sans bg-black border border-black text-white py-[12px] px-[30px] font-medium text-[12px] uppercase tracking-[2px] hover:bg-white hover:text-black transition-all duration-500"
           >
             Contact us now
-          </a>
-        </div>
+          </motion.a>
+        </motion.div>
       </section>
 
       {/* ===== ABOUT ===== */}
       <section id="about" className="bg-white py-20">
         <div className="max-w-6xl mx-auto px-8">
           <div className="grid md:grid-cols-2 gap-12 items-start">
-            {/* Left: Text */}
-            <div>
-              {/* <h2 className="font-sans text-[24px] font-medium uppercase tracking-[1px] text-black leading-[1em] mb-5">
-                RACHEL STARLETTA
-              </h2> */}
-              <p className="font-script text-[24px] text-[#a2783a] leading-[1.4em] mb-6">
-                To Know Us is to Love Us
-              </p>
+            <StaggerContainer>
+              <StaggerItem>
+                <p className="font-script text-[24px] text-[#a2783a] leading-[1.4em] mb-6">
+                  To Know Us is to Love Us
+                </p>
+              </StaggerItem>
               <div className="space-y-5 font-serif text-[17px] font-medium leading-[1.5em] text-[#666]">
-                <p>
-                  At House of MoXperience, we believe every celebration tells a
-                  story—your story. And we’re here to bring that story to life
-                  in the most beautiful, intentional way.
-                </p>
-                <p>
-                  We are more than just event planners; we are experience
-                  curators. From dream weddings to intimate celebrations and
-                  grand occasions, every detail is thoughtfully designed to
-                  reflect your vision, your style, and your essence.
-                </p>
-                <p>
-                  We understand that it’s not just about the big moments, but
-                  the little details that make them unforgettable. The ambiance,
-                  the emotions, the seamless flow, everything comes together to
-                  create something truly magical.
-                </p>{" "}
-                <p>
-                  Our approach is simple: we listen, we understand, and we
-                  execute with excellence. With a passion for creativity and a
-                  commitment to perfection, we turn ideas into timeless
-                  experiences.
-                </p>
-                <p>
-                  At House of MoXperience, we don’t just plan events, we create
-                  memories you’ll relive forever.
-                </p>
+                <StaggerItem>
+                  <p>
+                    At House of MoXperience, we believe every celebration tells a
+                    story—your story. And we&apos;re here to bring that story to life
+                    in the most beautiful, intentional way.
+                  </p>
+                </StaggerItem>
+                <StaggerItem>
+                  <p>
+                    We are more than just event planners; we are experience
+                    curators. From dream weddings to intimate celebrations and
+                    grand occasions, every detail is thoughtfully designed to
+                    reflect your vision, your style, and your essence.
+                  </p>
+                </StaggerItem>
+                <StaggerItem>
+                  <p>
+                    We understand that it&apos;s not just about the big moments, but
+                    the little details that make them unforgettable. The ambiance,
+                    the emotions, the seamless flow, everything comes together to
+                    create something truly magical.
+                  </p>
+                </StaggerItem>
+                <StaggerItem>
+                  <p>
+                    Our approach is simple: we listen, we understand, and we
+                    execute with excellence. With a passion for creativity and a
+                    commitment to perfection, we turn ideas into timeless
+                    experiences.
+                  </p>
+                </StaggerItem>
+                <StaggerItem>
+                  <p>
+                    At House of MoXperience, we don&apos;t just plan events, we create
+                    memories you&apos;ll relive forever.
+                  </p>
+                </StaggerItem>
               </div>
+              <StaggerItem>
+                <p className="font-script text-[24px] text-[#a2783a] mt-6">
+                  We would love to meet with you and bring your dream event to
+                  life.
+                </p>
+              </StaggerItem>
+            </StaggerContainer>
 
-              <p className="font-script text-[24px] text-[#a2783a] mt-6">
-                We would love to meet with you and bring your dream event to
-                life.
-              </p>
-            </div>
-            {/* Right: Image */}
-            <div className="flex justify-center">
-              <div className="w-full h-[500px] bg-cover bg-center bg-no-repeat bg-[url('/about.png')]" />
-            </div>
+            <ScrollReveal variant="clipUp" delay={0.2} duration={0.9}>
+              <div className="flex justify-center">
+                <div className="w-full h-[500px] bg-cover bg-center bg-no-repeat bg-[url('/about.png')]" />
+              </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
@@ -114,86 +163,64 @@ export default function Home() {
       <section id="contact" className="bg-white border-t border-gray-100">
         <div className="max-w-6xl mx-auto px-8 py-20">
           <div className="grid md:grid-cols-2 gap-16">
-            {/* Left: Contact info */}
             <div>
-              <p className="font-script text-[24px] text-[#a2783a] leading-[1em]">
-                location
-              </p>
-              <h2 className="font-sans text-[24px] font-medium uppercase tracking-[1px] text-black leading-[1em] mt-2 mb-8">
-                CONTACT US
-              </h2>
+              <ScrollReveal variant="blurIn" duration={0.7}>
+                <p className="font-script text-[24px] text-[#a2783a] leading-[1em]">
+                  location
+                </p>
+                <h2 className="font-sans text-[24px] font-medium uppercase tracking-[1px] text-black leading-[1em] mt-2 mb-8">
+                  CONTACT US
+                </h2>
+              </ScrollReveal>
 
-              <div className="space-y-4 font-serif text-[17px] leading-[1.5em] text-[#666]">
-                <p>
-                  <span className="font-sans text-black font-medium">
-                    Phone number
-                  </span>{" "}
-                  — +234 814 668 4159
-                </p>
-                <p>
-                  <span className="font-sans text-black font-medium">
-                    Address
-                  </span>{" "}
-                  — Lagos, Nigeria
-                </p>
-                <p>
-                  <span className="font-sans text-black font-medium">
-                    Email
-                  </span>{" "}
-                  — houseofmoxperience@gmail.com
-                </p>
-              </div>
+              <StaggerContainer className="space-y-4 font-serif text-[17px] leading-[1.5em] text-[#666]">
+                <StaggerItem>
+                  <p>
+                    <span className="font-sans text-black font-medium">
+                      Phone number
+                    </span>{" "}
+                    — +234 814 668 4159
+                  </p>
+                </StaggerItem>
+                <StaggerItem>
+                  <p>
+                    <span className="font-sans text-black font-medium">
+                      Address
+                    </span>{" "}
+                    — Lagos, Nigeria
+                  </p>
+                </StaggerItem>
+                <StaggerItem>
+                  <p>
+                    <span className="font-sans text-black font-medium">
+                      Email
+                    </span>{" "}
+                    — houseofmoxperience@gmail.com
+                  </p>
+                </StaggerItem>
+              </StaggerContainer>
             </div>
 
-            {/* Right: Contact form */}
             <div>
-              <h3 className="font-sans text-[24px] font-medium uppercase tracking-[1px] text-black leading-[1em] mb-4">
-                CONTACT FORM
-              </h3>
-              <p className="font-serif text-[17px] font-medium leading-[1.5em] text-[#666] mb-6">
-                We would like to hear from you
-              </p>
-              <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-                <div className="grid grid-cols-2 gap-4">
-                  <input
-                    type="text"
-                    placeholder="Name *"
-                    className="w-full border border-gray-200 px-4 py-3 font-serif text-[15px] text-[#666] focus:outline-none focus:border-gold transition-colors"
-                  />
-                  <input
-                    type="email"
-                    placeholder="Email *"
-                    className="w-full border border-gray-200 px-4 py-3 font-serif text-[15px] text-[#666] focus:outline-none focus:border-gold transition-colors"
-                  />
-                </div>
-                <input
-                  type="text"
-                  placeholder="Subject *"
-                  className="w-full border border-gray-200 px-4 py-3 font-serif text-[15px] text-[#666] focus:outline-none focus:border-gold transition-colors"
-                />
-                <textarea
-                  placeholder="Message *"
-                  rows={5}
-                  className="w-full border border-gray-200 px-4 py-3 font-serif text-[15px] text-[#666] focus:outline-none focus:border-gold transition-colors resize-none"
-                />
-                <button
-                  type="submit"
-                  className="font-sans bg-black border border-black text-white py-[12px] px-[30px] font-medium text-[12px] uppercase tracking-[2px] hover:bg-white hover:text-black transition-all duration-500"
-                >
-                  SAY HELLO!
-                </button>
-              </form>
+              <ScrollReveal variant="scaleUp" delay={0.1} duration={0.7}>
+                <h3 className="font-sans text-[24px] font-medium uppercase tracking-[1px] text-black leading-[1em] mb-4">
+                  CONTACT FORM
+                </h3>
+                <p className="font-serif text-[17px] font-medium leading-[1.5em] text-[#666] mb-6">
+                  We would like to hear from you
+                </p>
+                <ContactForm />
+              </ScrollReveal>
             </div>
           </div>
         </div>
       </section>
 
       {/* ===== FOOTER ===== */}
-      <footer className="bg-black text-white py-16">
+      <footer className="bg-black text-white py-16 overflow-hidden">
         <div className="max-w-6xl mx-auto px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            {/* Left: Logo + socials */}
-            <div>
+            <ScrollReveal variant="fadeUp">
               <Image
                 src="/logo.png"
                 alt="House of Mo'Xperience"
@@ -203,19 +230,17 @@ export default function Home() {
                 unoptimized
               />
               <div className="flex gap-2 mt-6">
-                {[
-                  {
-                    icon: "ti-facebook",
-                    href: "https://www.facebook.com/profile.php?id=61575744886347",
-                  },
-                  { icon: "ti-instagram", href: "#" },
-                  { icon: "ti-whatsapp", href: "https://wa.me/2348146684159" },
-                ].map((s) => (
-                  <a
+                {footerSocials.map((s, i) => (
+                  <motion.a
                     key={s.icon}
                     href={s.href}
                     target="_blank"
                     rel="noopener noreferrer"
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.3 + i * 0.1, duration: 0.4 }}
+                    whileHover={{ scale: 1.2, rotate: 5 }}
                     className="w-8 h-8 border border-white/20 flex items-center justify-center text-white hover:text-[#a2783a] hover:border-[#a2783a] transition-colors duration-300"
                   >
                     {s.icon === "ti-whatsapp" ? (
@@ -231,45 +256,47 @@ export default function Home() {
                     ) : (
                       <i className={`${s.icon} text-[13px]`} />
                     )}
-                  </a>
+                  </motion.a>
                 ))}
               </div>
-            </div>
+            </ScrollReveal>
 
-            {/* Middle: Ring + Write */}
-            <div className="space-y-6">
-              <div>
-                <p className="font-sans text-[12px] uppercase tracking-[2px] text-[#a2783a] mb-1">
-                  PHONE NUMBER
-                </p>
-                <p className="font-serif text-[17px] text-white/80">
-                  +234 814 668 4159
-                </p>
+            <ScrollReveal variant="fadeUp" delay={0.15}>
+              <div className="space-y-6">
+                <div>
+                  <p className="font-sans text-[12px] uppercase tracking-[2px] text-[#a2783a] mb-1">
+                    PHONE NUMBER
+                  </p>
+                  <p className="font-serif text-[17px] text-white/80">
+                    +234 814 668 4159
+                  </p>
+                </div>
+                <div>
+                  <p className="font-sans text-[12px] uppercase tracking-[2px] text-[#a2783a] mb-1">
+                    EMAIL
+                  </p>
+                  <p className="font-serif text-[17px] text-white/80">
+                    houseofmoxperience@gmail.com
+                  </p>
+                </div>
               </div>
-              <div>
-                <p className="font-sans text-[12px] uppercase tracking-[2px] text-[#a2783a] mb-1">
-                  EMAIL
-                </p>
-                <p className="font-serif text-[17px] text-white/80">
-                  houseofmoxperience@gmail.com
-                </p>
-              </div>
-            </div>
+            </ScrollReveal>
 
-            {/* Right: Address + copyright */}
-            <div className="space-y-6">
-              <div>
-                <p className="font-sans text-[12px] uppercase tracking-[2px] text-[#a2783a] mb-1">
-                  ADDRESS
-                </p>
-                <p className="font-serif text-[17px] text-white/80">
-                  Lagos, Nigeria
+            <ScrollReveal variant="fadeUp" delay={0.3}>
+              <div className="space-y-6">
+                <div>
+                  <p className="font-sans text-[12px] uppercase tracking-[2px] text-[#a2783a] mb-1">
+                    ADDRESS
+                  </p>
+                  <p className="font-serif text-[17px] text-white/80">
+                    Lagos, Nigeria
+                  </p>
+                </div>
+                <p className="font-serif text-[17px] text-white/80 italic">
+                  © {new Date().getFullYear()}. All rights reserved.
                 </p>
               </div>
-              <p className="font-serif text-[17px] text-white/80 italic">
-                © {new Date().getFullYear()}. All rights reserved.
-              </p>
-            </div>
+            </ScrollReveal>
           </div>
         </div>
       </footer>

@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
   { href: "#home", label: "HOME" },
@@ -112,24 +113,35 @@ export default function Sidebar() {
         </svg>
       </button>
 
-      {mobileOpen && (
-        <div
-          className="fixed inset-0 bg-black/30 z-1000 lg:hidden"
-          onClick={() => setMobileOpen(false)}
-        />
-      )}
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 bg-black/30 z-1000 lg:hidden"
+            onClick={() => setMobileOpen(false)}
+          />
+        )}
+      </AnimatePresence>
 
       <aside
         className={`
-          fixed top-0 bottom-0 left-0 w-[23%] bg-white z-1001 flex flex-col justify-between
-          p-[60px_30px] overflow-y-scroll shadow-[0_0_30px_rgba(0,0,0,0.05)]
+          fixed top-0 bottom-0 left-0 md:w-[40%] w-[70%] lg:w-[23%] bg-white z-1001 flex flex-col justify-between
+          lg:p-[60px_30px]  p-4 overflow-y-scroll shadow-[0_0_30px_rgba(0,0,0,0.05)]
           transition-all duration-500 [scrollbar-width:none]
           lg:translate-x-0
           ${mobileOpen ? "translate-x-0" : "-translate-x-full"}
         `}
       >
         <div>
-          <div className="text-center w-full relative">
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="text-center w-full relative"
+          >
             <Image
               src="/logo-light.png"
               alt="House of Mo'Xperience"
@@ -139,16 +151,19 @@ export default function Sidebar() {
               style={{ height: "120px", width: "auto" }}
               unoptimized
             />
-          </div>
+          </motion.div>
 
           <nav className="flex flex-col items-center">
-            {navLinks.map((link) => (
-              <a
+            {navLinks.map((link, i) => (
+              <motion.a
                 key={link.href}
                 href={link.href}
                 onClick={(e) => handleNav(e, link.href)}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.4, delay: 0.3 + i * 0.1, ease: "easeOut" }}
                 className={`
-                  text-[12px] font-normal leading-[1.5em] uppercase tracking-[1px]
+                  text-[12px] font-medium leading-[1.5em] uppercase tracking-[1px]
                   my-[9px] pb-[9px] transition-colors duration-300
                   ${
                     currentActive === link.href
@@ -158,24 +173,35 @@ export default function Sidebar() {
                 `}
               >
                 {link.label}
-              </a>
+              </motion.a>
             ))}
           </nav>
         </div>
 
-        <div className="pb-8 px-6 text-center">
-          <p className="text-[16px] text-black font-serif">+234 814 668 4159</p>
-          <p className="text-[16px] text-black font-serif mt-1">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.7, ease: "easeOut" }}
+          className="lg:pb-8 lg:px-6 text-center"
+        >
+          <p className="text-[12px] lg:text-[16px] text-black font-serif">
+            +234 814 668 4159
+          </p>
+          <p className="text-[12px] lg:text-[16px] text-black font-serif mt-1">
             houseofmoxperience@gmail.com
           </p>
 
           <div className="flex justify-center gap-4 mt-5">
-            {socials.map((s) => (
-              <a
+            {socials.map((s, i) => (
+              <motion.a
                 key={s.icon}
                 href={s.href}
                 target="_blank"
                 rel="noopener noreferrer"
+                initial={{ opacity: 0, scale: 0.5 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3, delay: 0.9 + i * 0.1 }}
+                whileHover={{ scale: 1.15, y: -2 }}
                 className="w-8 h-8 rounded-full border border-black/20 flex items-center justify-center text-black hover:text-gold hover:border-gold transition-colors duration-300"
               >
                 {s.icon === "ti-whatsapp" ? (
@@ -191,10 +217,10 @@ export default function Sidebar() {
                 ) : (
                   <i className={`${s.icon} text-[13px]`} />
                 )}
-              </a>
+              </motion.a>
             ))}
           </div>
-        </div>
+        </motion.div>
       </aside>
     </>
   );

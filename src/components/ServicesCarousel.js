@@ -2,6 +2,8 @@
 
 import { useRef, useState, useEffect, useCallback } from "react";
 import Link from "next/link";
+import { motion } from "framer-motion";
+import ScrollReveal from "./ScrollReveal";
 
 export default function ServicesCarousel({ services }) {
   const trackRef = useRef(null);
@@ -53,16 +55,18 @@ export default function ServicesCarousel({ services }) {
   }, [totalPages]);
 
   return (
-    <section id="services" className="bg-[#f5f3ef] py-20">
+    <section id="services" className="bg-[#f5f3ef] py-20 overflow-hidden">
       <div className="max-w-6xl mx-auto px-8">
-        <div className="mb-12">
-          <p className="font-script text-[24px] text-[#a2783a] leading-[1em]">
-            weddings . events
-          </p>
-          <h2 className="font-sans text-[24px] font-medium uppercase tracking-[1px] text-black leading-[1em] mt-2">
-            OUR SERVICES
-          </h2>
-        </div>
+        <ScrollReveal variant="blurIn" duration={0.7}>
+          <div className="mb-12">
+            <p className="font-script text-[24px] text-[#a2783a] leading-[1em]">
+              weddings . events
+            </p>
+            <h2 className="font-sans text-[24px] font-medium uppercase tracking-[1px] text-black leading-[1em] mt-2">
+              OUR SERVICES
+            </h2>
+          </div>
+        </ScrollReveal>
       </div>
 
       <div
@@ -70,38 +74,45 @@ export default function ServicesCarousel({ services }) {
         className="flex gap-6 overflow-x-auto px-8 [scrollbar-width:none] cursor-grab active:cursor-grabbing snap-x snap-mandatory scroll-smooth"
       >
         {tripled.map((service, i) => (
-          <Link
+          <div
             key={`${service.title}-${i}`}
-            href={service.href}
-            className="group relative block overflow-hidden shrink-0 snap-start"
+            className="shrink-0 snap-start"
             style={{ width: `calc(${cardWidth}% - 16px)`, minWidth: "280px" }}
           >
-            <div
-              className="h-[400px] bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-              style={{ backgroundImage: `url('${service.image}')` }}
-            />
-            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-500" />
-            <div className="absolute bottom-6 left-6 right-6">
-              <p className="font-script text-white text-[20px] leading-[1em] mb-1">
-                . {service.label}
-              </p>
-              <h3 className="font-sans text-white text-[14px] font-medium uppercase tracking-[2px]">
-                {service.title}
-              </h3>
-            </div>
-            <div className="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-              <span className="text-white text-[20px]">→</span>
-            </div>
-          </Link>
+            <Link
+              href={service.href}
+              className="group relative block overflow-hidden"
+            >
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+                className="h-[400px] bg-cover bg-center"
+                style={{ backgroundImage: `url('${service.image}')` }}
+              />
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-500" />
+              <div className="absolute bottom-6 left-6 right-6">
+                <p className="font-script text-white text-[20px] leading-[1em] mb-1">
+                  . {service.label}
+                </p>
+                <h3 className="font-sans text-white text-[14px] font-medium uppercase tracking-[2px]">
+                  {service.title}
+                </h3>
+              </div>
+              <div className="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                <span className="text-white text-[20px]">→</span>
+              </div>
+            </Link>
+          </div>
         ))}
       </div>
 
-      {/* Dots */}
       <div className="flex justify-center gap-2 mt-8">
         {Array.from({ length: totalPages }).map((_, i) => (
-          <button
+          <motion.button
             key={i}
             onClick={() => scrollToPage(i)}
+            whileHover={{ scale: 1.4 }}
+            whileTap={{ scale: 0.85 }}
             className={`w-2.5 h-2.5 rounded-full transition-colors duration-300 ${
               activeDot === i ? "bg-black/70" : "bg-black/20"
             }`}
