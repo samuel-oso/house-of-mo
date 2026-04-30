@@ -89,7 +89,7 @@ export default function ServicesCarousel({ services }) {
                 className="h-[400px] bg-cover bg-center"
                 style={{ backgroundImage: `url('${service.image}')` }}
               />
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-500" />
+              <div className="absolute inset-0 bg-black/30 md:bg-black/0 md:group-hover:bg-black/55 transition-all duration-500" />
               <div className="absolute bottom-6 left-6 right-6">
                 <p className="font-script text-white text-[20px] leading-[1em] mb-1">
                   . {service.label}
@@ -98,8 +98,24 @@ export default function ServicesCarousel({ services }) {
                   {service.title}
                 </h3>
               </div>
-              <div className="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                <span className="text-white text-[20px]">→</span>
+              <div className="absolute bottom-24 left-1/2 -translate-x-1/2 opacity-100 md:opacity-0 md:group-hover:opacity-100 md:group-hover:translate-y-0 md:translate-y-2 transition-all duration-500">
+                <div className="w-12 h-12 rounded-full border border-white/80 flex items-center justify-center backdrop-blur-sm bg-black/20">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="text-white"
+                  >
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                    <polyline points="12 5 19 12 12 19" />
+                  </svg>
+                </div>
               </div>
             </Link>
           </div>

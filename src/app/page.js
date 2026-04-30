@@ -35,7 +35,10 @@ const footerSocials = [
     icon: "ti-facebook",
     href: "https://www.facebook.com/profile.php?id=61575744886347",
   },
-  { icon: "ti-instagram", href: "#" },
+  {
+    icon: "ti-instagram",
+    href: "https://www.instagram.com/_houseofmoxperience?igsh=bTkzYjI3Ynk3azhp&utm_source=qr",
+  },
   { icon: "ti-whatsapp", href: "https://wa.me/2348146684159" },
 ];
 
@@ -166,7 +169,7 @@ export default function Home() {
             <div>
               <ScrollReveal variant="blurIn" duration={0.7}>
                 <p className="font-script text-[24px] text-[#a2783a] leading-[1em]">
-                  location
+                  contact details
                 </p>
                 <h2 className="font-sans text-[24px] font-medium uppercase tracking-[1px] text-black leading-[1em] mt-2 mb-8">
                   CONTACT US

@@ -17,7 +17,10 @@ const socials = [
     icon: "ti-facebook",
     href: "https://www.facebook.com/profile.php?id=61575744886347",
   },
-  { icon: "ti-instagram", href: "#" },
+  {
+    icon: "ti-instagram",
+    href: "https://www.instagram.com/_houseofmoxperience?igsh=bTkzYjI3Ynk3azhp&utm_source=qr",
+  },
   { icon: "ti-whatsapp", href: "https://wa.me/2348146684159" },
 ];
 
