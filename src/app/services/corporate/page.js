@@ -1,8 +1,44 @@
 import ServiceLayout from "@/components/ServiceLayout";
+import JsonLd from "@/components/JsonLd";
+import { SITE_URL, serviceJsonLd } from "@/lib/seo";
+
+const PAGE_URL = `${SITE_URL}/services/corporate`;
+const PAGE_IMAGE = `${SITE_URL}/corporate.png`;
+const PAGE_DESCRIPTION =
+  "Corporate event planning in Lagos, Nigeria. Product launches, conferences, galas, and executive gatherings — designed and executed for impact by House of Mo'Xperience.";
+
+/** @type {import("next").Metadata} */
+export const metadata = {
+  title: "Corporate Event Planner — Lagos, Nigeria",
+  description: PAGE_DESCRIPTION,
+  alternates: { canonical: "/services/corporate" },
+  openGraph: {
+    type: "article",
+    url: PAGE_URL,
+    title: "Corporate Event Planner — Lagos | House of Mo'Xperience",
+    description: PAGE_DESCRIPTION,
+    images: [{ url: PAGE_IMAGE, width: 1200, height: 800 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Corporate Event Planner — Lagos",
+    description: PAGE_DESCRIPTION,
+    images: [PAGE_IMAGE],
+  },
+};
+
+const jsonLd = serviceJsonLd({
+  name: "Corporate Event Planning",
+  description: PAGE_DESCRIPTION,
+  url: PAGE_URL,
+  image: PAGE_IMAGE,
+});
 
 export default function CorporateEvents() {
   return (
-    <ServiceLayout title="CORPORATE EVENTS" label="our services">
+    <>
+      <JsonLd data={jsonLd} />
+      <ServiceLayout title="CORPORATE EVENTS" label="our services">
       <div className="grid md:grid-cols-12 gap-10">
         <div className="md:col-span-5 min-h-[400px] max-h-[550px] bg-cover bg-center bg-[url('/corporate.png')]" />
         <div className="md:col-span-7">
@@ -42,5 +78,6 @@ export default function CorporateEvents() {
         </div>
       </div>
     </ServiceLayout>
+    </>
   );
 }

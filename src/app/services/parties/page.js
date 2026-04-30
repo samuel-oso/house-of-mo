@@ -1,8 +1,44 @@
 import ServiceLayout from "@/components/ServiceLayout";
+import JsonLd from "@/components/JsonLd";
+import { SITE_URL, serviceJsonLd } from "@/lib/seo";
+
+const PAGE_URL = `${SITE_URL}/services/parties`;
+const PAGE_IMAGE = `${SITE_URL}/parties.png`;
+const PAGE_DESCRIPTION =
+  "Party planning in Lagos, Nigeria — birthdays, anniversaries, baby showers, housewarmings, and milestone celebrations curated end-to-end by House of Mo'Xperience.";
+
+/** @type {import("next").Metadata} */
+export const metadata = {
+  title: "Party Planner — Birthdays, Anniversaries & Celebrations in Lagos",
+  description: PAGE_DESCRIPTION,
+  alternates: { canonical: "/services/parties" },
+  openGraph: {
+    type: "article",
+    url: PAGE_URL,
+    title: "Party Planner — Lagos | House of Mo'Xperience",
+    description: PAGE_DESCRIPTION,
+    images: [{ url: PAGE_IMAGE, width: 1200, height: 800 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Party Planner — Lagos",
+    description: PAGE_DESCRIPTION,
+    images: [PAGE_IMAGE],
+  },
+};
+
+const jsonLd = serviceJsonLd({
+  name: "Party Planning",
+  description: PAGE_DESCRIPTION,
+  url: PAGE_URL,
+  image: PAGE_IMAGE,
+});
 
 export default function Parties() {
   return (
-    <ServiceLayout title="PARTY PLANNING" label="our services">
+    <>
+      <JsonLd data={jsonLd} />
+      <ServiceLayout title="PARTY PLANNING" label="our services">
       <div className="grid md:grid-cols-12 gap-10">
         <div
           className="md:col-span-5 min-h-[400px] max-h-[550px] bg-cover bg-center bg-[url('/parties.png')]"
@@ -47,5 +83,6 @@ export default function Parties() {
         </div>
       </div>
     </ServiceLayout>
+    </>
   );
 }

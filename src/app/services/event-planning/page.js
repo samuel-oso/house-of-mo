@@ -1,8 +1,44 @@
 import ServiceLayout from "@/components/ServiceLayout";
+import JsonLd from "@/components/JsonLd";
+import { SITE_URL, serviceJsonLd } from "@/lib/seo";
+
+const PAGE_URL = `${SITE_URL}/services/event-planning`;
+const PAGE_IMAGE = `${SITE_URL}/hero.png`;
+const PAGE_DESCRIPTION =
+  "Full-service event planning in Lagos, Nigeria. From concept to coordination, House of Mo'Xperience handles vendors, timelines, and on-the-day execution for unforgettable events.";
+
+/** @type {import("next").Metadata} */
+export const metadata = {
+  title: "Event Planning — Full-Service Coordination in Lagos",
+  description: PAGE_DESCRIPTION,
+  alternates: { canonical: "/services/event-planning" },
+  openGraph: {
+    type: "article",
+    url: PAGE_URL,
+    title: "Event Planning — Full-Service Coordination in Lagos",
+    description: PAGE_DESCRIPTION,
+    images: [{ url: PAGE_IMAGE, width: 1200, height: 800 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Event Planning — Lagos",
+    description: PAGE_DESCRIPTION,
+    images: [PAGE_IMAGE],
+  },
+};
+
+const jsonLd = serviceJsonLd({
+  name: "Event Planning",
+  description: PAGE_DESCRIPTION,
+  url: PAGE_URL,
+  image: PAGE_IMAGE,
+});
 
 export default function EventPlanning() {
   return (
-    <ServiceLayout title="EVENT PLANNING" label="our services">
+    <>
+      <JsonLd data={jsonLd} />
+      <ServiceLayout title="EVENT PLANNING" label="our services">
       <div className="grid md:grid-cols-12 gap-10">
         <div
           className="md:col-span-5 min-h-[400px] max-h-[550px] bg-cover bg-center bg-[url('https://images.unsplash.com/photo-1532712938310-34cb3982ef74?w=800&q=80')]"
@@ -49,5 +85,6 @@ export default function EventPlanning() {
         </div>
       </div>
     </ServiceLayout>
+    </>
   );
 }
